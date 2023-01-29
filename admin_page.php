@@ -33,7 +33,7 @@ if(!isset($admin_id)){
 
 <section class="dashboard">
 
-   <h1 class="title">dashboard</h1>
+   <h1 class="title">Dashboard</h1>
 
    <div class="box-container">
 
@@ -46,9 +46,9 @@ if(!isset($admin_id)){
             $total_pendings += $fetch_pendings['total_price'];
          };
       ?>
-      <h3>$<?= $total_pendings; ?>/-</h3>
+      <h3>₹<?= $total_pendings; ?>/-</h3>
       <p>total pendings</p>
-      <a href="admin_orders.php" class="btn">see orders</a>
+      <a href="admin_orders.php" class="btn">See Orders</a>
       </div>
 
       <div class="box">
@@ -60,9 +60,9 @@ if(!isset($admin_id)){
             $total_completed += $fetch_completed['total_price'];
          };
       ?>
-      <h3>$<?= $total_completed; ?>/-</h3>
-      <p>completed orders</p>
-      <a href="admin_orders.php" class="btn">see orders</a>
+      <h3>₹<?= $total_completed; ?>/-</h3>
+      <p>Completed Orders</p>
+      <a href="admin_orders.php" class="btn">See Orders</a>
       </div>
 
       <div class="box">
@@ -72,8 +72,8 @@ if(!isset($admin_id)){
          $number_of_orders = $select_orders->rowCount();
       ?>
       <h3><?= $number_of_orders; ?></h3>
-      <p>orders placed</p>
-      <a href="admin_orders.php" class="btn">see orders</a>
+      <p>Orders Placed</p>
+      <a href="admin_orders.php" class="btn">See Orders</a>
       </div>
 
 <!--      <div class="box">-->
@@ -94,8 +94,8 @@ if(!isset($admin_id)){
          $number_of_users = $select_users->rowCount();
       ?>
       <h3><?= $number_of_users; ?></h3>
-      <p>total users</p>
-      <a href="admin_users.php" class="btn">see accounts</a>
+      <p>Total users</p>
+      <a href="admin_users.php" class="btn">See Accounts</a>
       </div>
 
       <div class="box">
@@ -105,8 +105,8 @@ if(!isset($admin_id)){
          $number_of_admins = $select_admins->rowCount();
       ?>
       <h3><?= $number_of_admins; ?></h3>
-      <p>total admins</p>
-      <a href="admin_users.php" class="btn">see accounts</a>
+      <p>Total Admins</p>
+      <a href="admin_users.php" class="btn">See Accounts</a>
       </div>
 
       <div class="box">
@@ -116,8 +116,8 @@ if(!isset($admin_id)){
          $number_of_accounts = $select_accounts->rowCount();
       ?>
       <h3><?= $number_of_accounts; ?></h3>
-      <p>total accounts</p>
-      <a href="admin_users.php" class="btn">see accounts</a>
+      <p>Total Accounts</p>
+      <a href="admin_users.php" class="btn">See Accounts</a>
       </div>
 
       <div class="box">
@@ -128,7 +128,7 @@ if(!isset($admin_id)){
       ?>
       <h3><?= $number_of_messages; ?></h3>
       <p>total messages</p>
-      <a href="admin_contacts.php" class="btn">see messages</a>
+      <a href="admin_contacts.php" class="btn">See Messages</a>
       </div>
 
    </div>
@@ -143,7 +143,7 @@ if(!isset($admin_id)){
 
 
 
-
+<?php include 'footer.php'; ?>
 
 
 

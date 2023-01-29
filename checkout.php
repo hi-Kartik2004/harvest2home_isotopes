@@ -51,7 +51,7 @@ if(isset($_POST['order'])){
       $insert_order->execute([$user_id, $name, $number, $email, $method, $address, $total_products, $cart_total, $placed_on]);
       $delete_cart = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
       $delete_cart->execute([$user_id]);
-      $message[] = 'order placed successfully!';
+      $message[] = 'Order placed successfully!, Please Check your Email';
    }
 
 }
@@ -88,21 +88,21 @@ if(isset($_POST['order'])){
             $cart_total_price = ($fetch_cart_items['price'] * $fetch_cart_items['quantity']);
             $cart_grand_total += $cart_total_price;
    ?>
-   <p> <?= $fetch_cart_items['name']; ?> <span>(<?= '$'.$fetch_cart_items['price'].'/- x '. $fetch_cart_items['quantity']; ?>)</span> </p>
+   <p> <?= $fetch_cart_items['name']; ?> <span>(<?= '₹'.$fetch_cart_items['price'].'/- x '. $fetch_cart_items['quantity']; ?>)</span> </p>
    <?php
     }
    }else{
       echo '<p class="empty">your cart is empty!</p>';
    }
    ?>
-   <div class="grand-total">grand total : <span>$<?= $cart_grand_total; ?>/-</span></div>
+   <div class="grand-total">Grand total : <span>₹<?= $cart_grand_total; ?>/-</span></div>
 </section>
 
 <section class="checkout-orders">
 
    <form action="" method="POST">
 
-      <h3>place your order</h3>
+      <h3>Place your order</h3>
 
       <div class="flex">
          <div class="inputBox">

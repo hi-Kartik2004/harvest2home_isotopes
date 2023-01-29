@@ -92,17 +92,17 @@ if(isset($_GET['delete'])){
 
 <section class="add-products">
 
-   <h1 class="title">add new product</h1>
+   <h1 class="title">Add New Product</h1>
 
    <form action="" method="POST" enctype="multipart/form-data">
       <div class="flex">
          <div class="inputBox">
          <input type="text" name="name" class="box" required placeholder="enter product name">
          <select name="category" class="box" required>
-            <option value="" selected disabled>select category</option>
-               <option value="vegitables">vegitables</option>
-               <option value="fruits">fruits</option>
-               <option value="meat">meat</option>
+            <option value="" selected disabled>Select Category</option>
+               <option value="vegitables">Vegetables</option>
+               <option value="fruits">Fruits</option>
+               <option value="milk">Milk</option>
                <option value="fish">fish</option>
          </select>
          </div>
@@ -119,7 +119,7 @@ if(isset($_GET['delete'])){
 
 <section class="show-products">
 
-   <h1 class="title">products added</h1>
+   <h1 class="title">Products Added</h1>
 
    <div class="box-container">
 
@@ -136,14 +136,14 @@ if(isset($_GET['delete'])){
       <div class="cat"><?= $fetch_products['category']; ?></div>
       <div class="details"><?= $fetch_products['details']; ?></div>
       <div class="flex-btn">
-         <a href="admin_update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">update</a>
-         <a href="admin_products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">delete</a>
+         <a href="admin_update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">Update</a>
+         <a href="admin_products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">Delete</a>
       </div>
    </div>
    <?php
       }
    }else{
-      echo '<p class="empty">now products added yet!</p>';
+      echo '<p class="empty">No products added yet!</p>';
    }
    ?>
 
@@ -157,7 +157,7 @@ if(isset($_GET['delete'])){
 
 
 
-
+<?php include 'footer.php'; ?>
 
 
 

@@ -10,7 +10,6 @@ if(!isset($user_id)){
    header('location:login.php');
 };
 
-
 if(isset($_POST['add_to_wishlist'])){
 
    $pid = $_POST['pid'];
@@ -29,13 +28,13 @@ if(isset($_POST['add_to_wishlist'])){
    $check_cart_numbers->execute([$p_name, $user_id]);
 
    if($check_wishlist_numbers->rowCount() > 0){
-      $message[] = 'already added to wishlist!';
+      $message[] = 'Already added to wishlist!';
    }elseif($check_cart_numbers->rowCount() > 0){
-      $message[] = 'already added to cart!';
+      $message[] = 'Already added to cart!';
    }else{
       $insert_wishlist = $conn->prepare("INSERT INTO `wishlist`(user_id, pid, name, price, image) VALUES(?,?,?,?,?)");
       $insert_wishlist->execute([$user_id, $pid, $p_name, $p_price, $p_image]);
-      $message[] = 'added to wishlist!';
+      $message[] = 'Added to Wishlist!';
    }
 
 }
@@ -57,7 +56,7 @@ if(isset($_POST['add_to_cart'])){
    $check_cart_numbers->execute([$p_name, $user_id]);
 
    if($check_cart_numbers->rowCount() > 0){
-      $message[] = 'already added to cart!';
+      $message[] = 'Already added to cart!';
    }else{
 
       $check_wishlist_numbers = $conn->prepare("SELECT * FROM `wishlist` WHERE name = ? AND user_id = ?");
@@ -70,7 +69,7 @@ if(isset($_POST['add_to_cart'])){
 
       $insert_cart = $conn->prepare("INSERT INTO `cart`(user_id, pid, name, price, quantity, image) VALUES(?,?,?,?,?,?)");
       $insert_cart->execute([$user_id, $pid, $p_name, $p_price, $p_qty, $p_image]);
-      $message[] = 'added to cart!';
+      $message[] = 'Added to cart!';
    }
 
 }
@@ -83,7 +82,7 @@ if(isset($_POST['add_to_cart'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home page</title>
+   <title>quick view</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -96,92 +95,36 @@ if(isset($_POST['add_to_cart'])){
    
 <?php include 'header.php'; ?>
 
-<div class="home-bg">
+<section class="quick-view">
 
-   <section class="home">
-
-      <div class="content" >
-<!--         <span>your products, our market</span>-->
-          <h2>Harvest To Home</h2>
-          <p>Direct Farm to your Home</p>
-<!--         <a href="about.php" class="btn">about us</a>-->
-      </div>
-
-   </section>
-
-</div>
-
-<section class="home-category">
-
-   <h1 class="title">Shop by Category</h1>
-
-   <div class="box-container">
-
-      <div class="box">
-         <img src="images/cat-1.png" alt="">
-         <h3>fruits</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
-         <a href="category.php?category=fruits" class="btn">fruits</a>
-      </div>
-
-      <div class="box">
-         <img src="images/cat-2.png" alt="">
-         <h3>Milk</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
-         <a href="category.php?category=milk" class="btn">Milk</a>
-      </div>
-
-      <div class="box">
-         <img src="images/cat-3.png" alt="">
-         <h3>Vegetables</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
-         <a href="category.php?category=vegitables" class="btn">vegitables</a>
-      </div>
-
-      <div class="box">
-         <img src="images/cat-4.png" alt="">
-         <h3>fish</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
-         <a href="category.php?category=fish" class="btn">fish</a>
-      </div>
-
-   </div>
-
-</section>
-
-<section class="products">
-
-   <h1 class="title">latest products</h1>
-
-   <div class="box-container">
+   <h1 class="title">Quick view</h1>
 
    <?php
-      $select_products = $conn->prepare("SELECT * FROM `products` LIMIT 6");
-      $select_products->execute();
+      $pid = $_GET['pid'];
+      $select_products = $conn->prepare("SELECT * FROM `products` WHERE id = ?");
+      $select_products->execute([$pid]);
       if($select_products->rowCount() > 0){
          while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){ 
    ?>
    <form action="" class="box" method="POST">
-      <div class="price">₹<span><?= $fetch_products['price']; ?></span>/-</div>
-      <a href="view_page.php?pid=<?= $fetch_products['id']; ?>" class="fas fa-eye"></a>
+      <div class="price">$<span><?= $fetch_products['price']; ?></span>/-</div>
       <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
       <div class="name"><?= $fetch_products['name']; ?></div>
+      <div class="details"><?= $fetch_products['details']; ?></div>
       <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
       <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
       <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
       <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
-    <label for="">Quantity  <input type="number"  min="1" value="1" name="p_qty" class="qty"></label>
+      <input type="number" min="1" value="1" name="p_qty" class="qty">
       <input type="submit" value="add to wishlist" class="option-btn" name="add_to_wishlist">
       <input type="submit" value="add to cart" class="btn" name="add_to_cart">
    </form>
    <?php
+         }
+      }else{
+         echo '<p class="empty">No products added yet!</p>';
       }
-   }else{
-      echo '<p class="empty">No products added yet!</p>';
-   }
    ?>
-
-   </div>
 
 </section>
 
@@ -192,6 +135,7 @@ if(isset($_POST['add_to_cart'])){
 
 
 
+<?php include 'footer.php'; ?>
 
 <script src="js/script.js"></script>
 

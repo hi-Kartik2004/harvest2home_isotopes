@@ -37,16 +37,16 @@ if(!isset($user_id)){
 
       <div class="box">
          <img src="images/about-img-1.png" alt="">
-         <h3>why choose us?</h3>
+         <h3>Why choose us?</h3>
          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam, a quod, quis alias eius dignissimos pariatur laborum dolorem ad ullam iure, consequatur autem animi illo odit! Atque quia minima voluptatibus.</p>
-         <a href="contact.php" class="btn">contact us</a>
+         <a href="contact.php" class="btn">Contact Us</a>
       </div>
 
       <div class="box">
          <img src="images/about-img-2.png" alt="">
-         <h3>what we provide?</h3>
+         <h3>What we provide?</h3>
          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam, a quod, quis alias eius dignissimos pariatur laborum dolorem ad ullam iure, consequatur autem animi illo odit! Atque quia minima voluptatibus.</p>
-         <a href="shop.php" class="btn">our platform</a>
+         <a href="shop.php" class="btn">Our Products</a>
       </div>
 
    </div>
@@ -55,7 +55,7 @@ if(!isset($user_id)){
 
 <section class="reviews">
 
-   <h1 class="title">clients reivews</h1>
+   <h1 class="title">Clients Reivews</h1>
 
    <div class="box-container">
 
@@ -69,7 +69,7 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>john deo</h3>
+         <h3>Kartikeya</h3>
       </div>
 
       <div class="box">
@@ -82,7 +82,7 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>john deo</h3>
+         <h3>Numan</h3>
       </div>
 
       <div class="box">
@@ -95,7 +95,7 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>john deo</h3>
+         <h3>Anfal</h3>
       </div>
 
       <div class="box">
@@ -108,7 +108,7 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>john deo</h3>
+         <h3>Jagnath</h3>
       </div>
 
       <div class="box">
@@ -121,7 +121,7 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>john deo</h3>
+         <h3>Nitesh</h3>
       </div>
 
       <div class="box">
@@ -134,7 +134,7 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>john deo</h3>
+         <h3>Mahesh</h3>
       </div>
 
    </div>

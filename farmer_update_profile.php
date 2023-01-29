@@ -4,9 +4,9 @@
 
 session_start();
 
-$admin_id = $_SESSION['admin_id'];
+$farmer_id = $_SESSION['farmer_id'];
 
-if(!isset($admin_id)){
+if(!isset($farmer_id)){
    header('location:login.php');
 };
 
@@ -18,7 +18,7 @@ if(isset($_POST['update_profile'])){
    $email = filter_var($email, FILTER_SANITIZE_STRING);
 
    $update_profile = $conn->prepare("UPDATE `users` SET name = ?, email = ? WHERE id = ?");
-   $update_profile->execute([$name, $email, $admin_id]);
+   $update_profile->execute([$name, $email, $farmer_id]);
 
    $image = $_FILES['image']['name'];
    $image = filter_var($image, FILTER_SANITIZE_STRING);
@@ -32,7 +32,7 @@ if(isset($_POST['update_profile'])){
          $message[] = 'image size is too large!';
       }else{
          $update_image = $conn->prepare("UPDATE `users` SET image = ? WHERE id = ?");
-         $update_image->execute([$image, $admin_id]);
+         $update_image->execute([$image, $farmer_id]);
          if($update_image){
             move_uploaded_file($image_tmp_name, $image_folder);
             unlink('uploaded_img/'.$old_image);
@@ -56,7 +56,7 @@ if(isset($_POST['update_profile'])){
          $message[] = 'confirm password not matched!';
       }else{
          $update_pass_query = $conn->prepare("UPDATE `users` SET password = ? WHERE id = ?");
-         $update_pass_query->execute([$confirm_pass, $admin_id]);
+         $update_pass_query->execute([$confirm_pass, $farmer_id]);
          $message[] = 'password updated successfully!';
       }
    }
@@ -71,7 +71,7 @@ if(isset($_POST['update_profile'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>update admin profile</title>
+   <title>update farmer profile</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -82,7 +82,7 @@ if(isset($_POST['update_profile'])){
 </head>
 <body>
    
-<?php include 'admin_header.php'; ?>
+<?php include 'farmer_header.php'; ?>
 
 <section class="update-profile">
 
@@ -112,13 +112,13 @@ if(isset($_POST['update_profile'])){
       </div>
       <div class="flex-btn">
          <input type="submit" class="btn" value="update profile" name="update_profile">
-         <a href="admin_page.php" class="option-btn">go back</a>
+         <a href="farmer_page.php" class="option-btn">go back</a>
       </div>
    </form>
 
 </section>
 
-<?php include 'footer.php'; ?>
+
 
 
 
@@ -131,6 +131,5 @@ if(isset($_POST['update_profile'])){
 
 
 <script src="js/script.js"></script>
-
 </body>
 </html>

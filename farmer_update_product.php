@@ -75,7 +75,7 @@ if(isset($_POST['update_product'])){
 
 <section class="update-product">
 
-   <h1 class="title">update product</h1>   
+   <h1 class="title">Update product</h1>   
 
    <?php
       $update_id = $_GET['update'];
@@ -88,31 +88,31 @@ if(isset($_POST['update_product'])){
       <input type="hidden" name="old_image" value="<?= $fetch_products['image']; ?>">
       <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
       <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
-      <input type="text" name="name" placeholder="enter product name" required class="box" value="<?= $fetch_products['name']; ?>">
-      <input type="number" name="price" min="0" placeholder="enter product price" required class="box" value="<?= $fetch_products['price']; ?>">
+      <input type="text" name="name" placeholder="Enter product name" required class="box" value="<?= $fetch_products['name']; ?>">
+      <input type="number" name="price" min="0" placeholder="Enter product price" required class="box" value="<?= $fetch_products['price']; ?>">
       <select name="category" class="box" required>
          <option selected><?= $fetch_products['category']; ?></option>
-         <option value="vegitables">vegitables</option>
-         <option value="fruits">fruits</option>
-         <option value="meat">meat</option>
-         <option value="fish">fish</option>
+         <option value="vegetables">Vegetables</option>
+         <option value="fruits">Fruits</option>
+         <option value="milk">Milk</option>
+         <option value="fish">Fish</option>
       </select>
-      <textarea name="details" required placeholder="enter product details" class="box" cols="30" rows="10"><?= $fetch_products['details']; ?></textarea>
-      <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png">
+      <textarea name="details" required placeholder="Enter product details" class="box" cols="30" rows="10"><?= $fetch_products['details']; ?></textarea>
+   <input type="file"  name="image" class="box" accept="image/jpg, image/jpeg, image/png">
       <div class="flex-btn">
          <input type="submit" class="btn" value="update product" name="update_product">
-         <a href="farmer_products.php" class="option-btn">go back</a>
+         <a href="farmer_products.php" class="option-btn">← Go back</a>
       </div>
    </form>
    <?php
          }
       }else{
-         echo '<p class="empty">no products found!</p>';
+         echo '<p class="empty">No products found!</p>';
       }
    ?>
 
 </section>
-
+<?php include 'footer.php'; ?>
 
 
 

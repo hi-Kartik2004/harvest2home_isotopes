@@ -17,12 +17,12 @@ if(isset($message)){
 
     <div class="flex">
 
-        <a href="farmer_page.php" class="logo">Farmer<span>Panel</span></a>
+        <a href="farmer_page.php" class="logo">Farmer Panel</a>
 
         <nav class="navbar">
-            <a href="home.php">home</a>
-            <a href="farmer_page.php">dashboard</a>
-            <a href="farmer_products.php">products</a>
+            <!-- <a href="home.php">Home</a> -->
+            <a href="farmer_page.php">Dashboard</a>
+            <a href="farmer_products.php">Add Products</a>
         </nav>
 
         <div class="icons">
@@ -38,7 +38,9 @@ if(isset($message)){
             ?>
             <img src="uploaded_img/<?= $fetch_profile['image']; ?>" alt="">
             <p><?= $fetch_profile['name']; ?></p>
-            <a href="admin_update_profile.php" class="btn">update profile</a>
+           
+            <a href="farmer_update_profile.php" value="" class="btn">Update profile</a>
+            </form>
             <a href="logout.php" class="delete-btn">logout</a>
 <!--            <div class="flex-btn">-->
 <!--                <a href="login.php" class="option-btn">login</a>-->
@@ -47,5 +49,5 @@ if(isset($message)){
         </div>
 
     </div>
-
+    
 </header>

@@ -10,7 +10,6 @@ if(!isset($user_id)){
    header('location:login.php');
 };
 
-
 if(isset($_POST['add_to_wishlist'])){
 
    $pid = $_POST['pid'];
@@ -83,7 +82,7 @@ if(isset($_POST['add_to_cart'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home page</title>
+   <title>search page</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -96,73 +95,36 @@ if(isset($_POST['add_to_cart'])){
    
 <?php include 'header.php'; ?>
 
-<div class="home-bg">
+<section class="search-form">
 
-   <section class="home">
-
-      <div class="content" >
-<!--         <span>your products, our market</span>-->
-          <h2>Harvest To Home</h2>
-          <p>Direct Farm to your Home</p>
-<!--         <a href="about.php" class="btn">about us</a>-->
-      </div>
-
-   </section>
-
-</div>
-
-<section class="home-category">
-
-   <h1 class="title">Shop by Category</h1>
-
-   <div class="box-container">
-
-      <div class="box">
-         <img src="images/cat-1.png" alt="">
-         <h3>fruits</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
-         <a href="category.php?category=fruits" class="btn">fruits</a>
-      </div>
-
-      <div class="box">
-         <img src="images/cat-2.png" alt="">
-         <h3>Milk</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
-         <a href="category.php?category=milk" class="btn">Milk</a>
-      </div>
-
-      <div class="box">
-         <img src="images/cat-3.png" alt="">
-         <h3>Vegetables</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
-         <a href="category.php?category=vegitables" class="btn">vegitables</a>
-      </div>
-
-      <div class="box">
-         <img src="images/cat-4.png" alt="">
-         <h3>fish</h3>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p>
-         <a href="category.php?category=fish" class="btn">fish</a>
-      </div>
-
-   </div>
+   <form action="" method="POST">
+      <input type="text" class="box" name="search_box" placeholder="search products...">
+      <input type="submit" name="search_btn" value="search" class="btn">
+   </form>
 
 </section>
 
-<section class="products">
+<?php
 
-   <h1 class="title">latest products</h1>
+
+
+?>
+
+<section class="products" style="padding-top: 0; min-height:100vh;">
 
    <div class="box-container">
 
    <?php
-      $select_products = $conn->prepare("SELECT * FROM `products` LIMIT 6");
+      if(isset($_POST['search_btn'])){
+      $search_box = $_POST['search_box'];
+      $search_box = filter_var($search_box, FILTER_SANITIZE_STRING);
+      $select_products = $conn->prepare("SELECT * FROM `products` WHERE name LIKE '%{$search_box}%' OR category LIKE '%{$search_box}%'");
       $select_products->execute();
       if($select_products->rowCount() > 0){
          while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){ 
    ?>
    <form action="" class="box" method="POST">
-      <div class="price">₹<span><?= $fetch_products['price']; ?></span>/-</div>
+      <div class="price">$<span><?= $fetch_products['price']; ?></span>/-</div>
       <a href="view_page.php?pid=<?= $fetch_products['id']; ?>" class="fas fa-eye"></a>
       <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
       <div class="name"><?= $fetch_products['name']; ?></div>
@@ -170,15 +132,17 @@ if(isset($_POST['add_to_cart'])){
       <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
       <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
       <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
-    <label for="">Quantity  <input type="number"  min="1" value="1" name="p_qty" class="qty"></label>
+      <input type="number" min="1" value="1" name="p_qty" class="qty">
       <input type="submit" value="add to wishlist" class="option-btn" name="add_to_wishlist">
       <input type="submit" value="add to cart" class="btn" name="add_to_cart">
    </form>
    <?php
+         }
+      }else{
+         echo '<p class="empty">no result found!</p>';
       }
-   }else{
-      echo '<p class="empty">No products added yet!</p>';
-   }
+      
+   };
    ?>
 
    </div>
@@ -190,8 +154,7 @@ if(isset($_POST['add_to_cart'])){
 
 
 
-
-
+<?php include 'footer.php'; ?>
 
 <script src="js/script.js"></script>
 

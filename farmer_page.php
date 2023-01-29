@@ -27,15 +27,53 @@ if(!isset($farmer_id)){
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="css/admin_style.css">
+    <style>
+        a:hover{
+            color:white;
+        }
 
+        p{
+            background: #ffff;
+            
+        }
+        .table{
+            /* width:95%;
+            display:flex;
+            justify-content:space-between;
+            align-items :center;
+            flex-direction:column; */
+            padding-left : 2vw;
+            padding-right : 2vw;
+            max-width:95vw;
+        }
+
+        .table table-striped{
+            width:100%;
+        
+        }
+        
+
+        .flex{
+            display:flex;
+        }
+        th, td{
+            font-size:18px;
+        }
+
+        hr{
+            width:40vw;
+            border-top:3px;
+            border-color:green;
+        }
+    </style>
 </head>
-<body>
+<body >
 
 <?php include 'farmer_header.php'; ?>
-
+<div class="flex">
 <section class="dashboard">
 
-    <h1 class="title">dashboard</h1>
+    <h1 class="title">Dashboard</h1>
 
     <div class="box-container">
 
@@ -46,14 +84,25 @@ if(!isset($farmer_id)){
                 $select_products->execute();
                 $number_of_products = $select_products->rowCount();
                 ?>
-                <h3><?= $number_of_products; ?></h3>
-                <p>products added</p>
-                <a href="farmer_products.php" class="btn">see products</a>
+                
+               <h3> <p>You have added <?= $number_of_products; ?> products</p></h3>
+                <a href="farmer_products.php" class="btn" style="a:hover{
+                     color: rgb(252, 252, 252);"
+                } >Manage products</a>
                 <a href="register_certified_farmers.php" class="btn">Certified Farmers Association Membership (Click to register)</a>
             </div>
 
 
-            <div class="table">
+           
+            </div>
+        </div>
+    </div>
+
+    </section>
+                <center>
+                    <h2 style="margin:30px;">Certified  Farmers Association Members
+                <hr class="hrt"> </h2>
+    <div class="table ">
                 <?php
                     $select_farmers = $conn->prepare("SELECT * FROM `certified_farmers` ORDER BY `id` DESC");
                     $select_farmers->execute();
@@ -63,7 +112,7 @@ if(!isset($farmer_id)){
 
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        
                         <th scope="col">Names</th>
                         <th scope="col">Phone Number</th>
                         <th scope="col">Farm Name</th>
@@ -81,7 +130,7 @@ if(!isset($farmer_id)){
                         ?>
                     <tbody>
                         <tr>
-                            <td><?php echo $data['id']??''; ?></td>
+                          
                             <td><?php echo $data['names']??''; ?></td>
                             <td><?php echo $data['phone_number']??''; ?></td>
                             <td><?php echo $data['farm_name']??''; ?></td>
@@ -93,15 +142,13 @@ if(!isset($farmer_id)){
                         }
                     ?>
                 </table>
-            </div>
-        </div>
-    </div>
+                </div>
+                </center>
 
-</section>
-
+               
 
 
-
+                <?php include 'footer.php'; ?>
 
 
 

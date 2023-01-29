@@ -92,18 +92,18 @@ if(isset($_GET['delete'])){
 
 <section class="add-products">
 
-   <h1 class="title">add new product</h1>
+   <h1 class="title">Add new product</h1>
 
    <form action="" method="POST" enctype="multipart/form-data">
       <div class="flex">
          <div class="inputBox">
          <input type="text" name="name" class="box" required placeholder="enter product name">
          <select name="category" class="box" required>
-            <option value="" selected disabled>select category</option>
-               <option value="vegetable">vegetable</option>
-               <option value="fruits">fruits</option>
-               <option value="meat">meat</option>
-               <option value="fish">fish</option>
+            <option value="" selected disabled>Select category</option>
+               <option value="vegetable">Vegetable</option>
+               <option value="fruits">Fruits</option>
+               <option value="milk">Milk</option>
+               <option value="fish">Fish</option>
          </select>
          </div>
          <div class="inputBox">
@@ -119,7 +119,7 @@ if(isset($_GET['delete'])){
 
 <section class="show-products">
 
-   <h1 class="title">products added</h1>
+   <h1 class="title">Products added</h1>
 
    <div class="box-container">
 
@@ -130,14 +130,14 @@ if(isset($_GET['delete'])){
          while($fetch_products = $show_products->fetch(PDO::FETCH_ASSOC)){  
    ?>
    <div class="box">
-      <div class="price">$<?= $fetch_products['price']; ?>/-</div>
+      <div class="price">₹<?= $fetch_products['price']; ?>/-</div>
       <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
       <div class="name"><?= $fetch_products['name']; ?></div>
       <div class="cat"><?= $fetch_products['category']; ?></div>
       <div class="details"><?= $fetch_products['details']; ?></div>
       <div class="flex-btn">
-         <a href="farmer_update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">update</a>
-         <a href="farmer_products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">delete</a>
+         <a href="farmer_update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">Update</a>
+         <a href="farmer_products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">Delete</a>
       </div>
    </div>
    <?php
@@ -148,9 +148,9 @@ if(isset($_GET['delete'])){
    ?>
 
    </div>
-
+  
 </section>
-
+<?php include 'footer.php'; ?>
 
 
 
